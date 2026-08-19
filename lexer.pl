@@ -73,7 +73,7 @@ sub lex {
                 name => $+{array_name},
                 item => $+{item}
             });
-        } elsif ($line =~ /apply\s(?<pattern>.*)\sto\sall\s\of(?<array_name>\w+)\./) {
+        } elsif ($line =~ /apply\s(?<pattern>.*)\sto\sall\sof(?<array_name>\w+)\./) {
             push_to_tokens({
                 type => 'array_map',
                 name => $+{array_name},
@@ -109,6 +109,7 @@ sub lex {
     close $fh;
 }
 
-
+my $givenFile = shift @ARGV;
+lex($givenFile);
 
 print encode_json(\@tokens);
